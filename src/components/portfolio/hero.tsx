@@ -49,8 +49,6 @@ export function Hero({
               copyKey="handle"
               copied={copied}
               onCopy={copy}
-              label={CONTACT.handle}
-              className="border-transparent bg-transparent text-primary hover:text-foreground"
             />
           </span>
           <p className="text-lg text-muted-foreground sm:text-xl">{CONTACT.title}</p>
