@@ -1,4 +1,4 @@
-import { GraduationCap, Award, Flag, ExternalLink } from "lucide-react";
+import { GraduationCap, Award, Flag } from "lucide-react";
 import { CERTS, EDUCATION, LEADERSHIP, LINKS } from "@/data/portfolio";
 import { Section, Tag } from "./shared";
 import { CONTACT } from "@/data/portfolio";

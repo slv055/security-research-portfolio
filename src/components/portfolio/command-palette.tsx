@@ -15,8 +15,7 @@ import {
   CommandList,
 } from "@/components/ui/command";
 import { CVES, HALL_OF_FAME } from "@/data/portfolio";
-import { scrollToId } from "./shared";
-import { useCopy } from "./shared";
+import { scrollToId, useCopy } from "./shared";
 import { Check, Copy } from "lucide-react";
 
 const SECTIONS = [
