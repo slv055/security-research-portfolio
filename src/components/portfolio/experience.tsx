@@ -1,4 +1,4 @@
-import { Briefcase, GraduationCap, FlaskConical, Github, BookOpen } from "lucide-react";
+import { Briefcase, Github, BookOpen } from "lucide-react";
 import { EXPERIENCE, LINKS, type Experience } from "@/data/portfolio";
 import { Section, Tag } from "./shared";
 
