@@ -14,21 +14,19 @@ export function EducationSection() {
       title="Foundation & community"
       description="Academic background, certifications, and community leadership in security education."
     >
-      <div className="grid grid-cols-1 gap-3 lg:grid-cols-3">
+      <div className="grid grid-cols-1 gap-10 lg:grid-cols-3">
         {/* education */}
-        <div className="card-sheen rounded-xl border border-border bg-card p-5 transition-colors hover:border-primary/40">
-          <div className="flex items-center gap-2">
+        <div className="border-t-2 border-primary pt-6">
+          <div className="kicker flex items-center gap-2 text-muted-foreground">
             <GraduationCap className="size-4 text-primary" aria-hidden />
-            <h3 className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">
-              Education
-            </h3>
+            Education
           </div>
-          <p className="mt-4 text-base font-semibold leading-snug text-foreground">
+          <p className="mt-5 font-display text-lg font-semibold leading-snug text-foreground">
             {EDUCATION.degree}
           </p>
-          <p className="mt-2 text-sm text-muted-foreground">{EDUCATION.school}</p>
+          <p className="serif-text mt-2 text-[15px] text-muted-foreground">{EDUCATION.school}</p>
           <div className="mono-chip mt-4 flex flex-wrap items-center gap-2">
-            <span className="rounded-md border border-primary/40 bg-primary/10 px-2 py-1 text-primary">
+            <span className="rounded-full border border-primary px-2.5 py-1 text-primary">
               cgpa {EDUCATION.cgpa} / 10
             </span>
             <span className="text-muted-foreground">{EDUCATION.period}</span>
@@ -36,18 +34,19 @@ export function EducationSection() {
         </div>
 
         {/* certifications */}
-        <div className="card-sheen rounded-xl border border-border bg-card p-5 transition-colors hover:border-primary/40">
-          <div className="flex items-center gap-2">
+        <div className="border-t-2 border-primary pt-6">
+          <div className="kicker flex items-center gap-2 text-muted-foreground">
             <Award className="size-4 text-primary" aria-hidden />
-            <h3 className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">
-              Certifications
-            </h3>
+            Certifications
           </div>
-          <ul className="mt-4 space-y-2.5">
+          <ul className="mt-5 space-y-3">
             {CERTS.map((cert) => (
-              <li key={cert} className="flex items-start gap-2.5 text-sm text-foreground/90">
+              <li
+                key={cert}
+                className="flex items-start gap-2.5 border-t border-border pt-3 text-sm text-foreground/90 first:border-0 first:pt-0"
+              >
                 <span aria-hidden className="mono-chip mt-0.5 shrink-0 text-primary">
-                  ✓
+                  ◆
                 </span>
                 {cert}
               </li>
@@ -57,21 +56,19 @@ export function EducationSection() {
             href={LINKS.unstop}
             target="_blank"
             rel="noreferrer"
-            className="mono-chip mt-4 inline-flex items-center gap-1.5 text-primary hover:underline"
+            className="mono-chip mt-4 inline-flex items-center gap-1.5 text-primary underline decoration-dotted underline-offset-4"
           >
             more certifications ↗
           </a>
         </div>
 
         {/* CTF / leadership */}
-        <div className="card-sheen rounded-xl border border-border bg-card p-5 transition-colors hover:border-primary/40">
-          <div className="flex items-center gap-2">
+        <div className="border-t-2 border-primary pt-6">
+          <div className="kicker flex items-center gap-2 text-muted-foreground">
             <Flag className="size-4 text-primary" aria-hidden />
-            <h3 className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">
-              CTF & Leadership
-            </h3>
+            CTF &amp; Leadership
           </div>
-          <p className="mt-4 text-base font-semibold leading-snug text-foreground">
+          <p className="mt-5 font-display text-lg font-semibold leading-snug text-foreground">
             {LEADERSHIP.title}
           </p>
           <p className="mono-chip mt-1 text-muted-foreground">
@@ -91,7 +88,7 @@ export function EducationSection() {
             href={LINKS.anzenctf}
             target="_blank"
             rel="noreferrer"
-            className="mono-chip mt-3 inline-flex items-center gap-1.5 text-primary hover:underline"
+            className="mono-chip mt-3 inline-flex items-center gap-1.5 text-primary underline decoration-dotted underline-offset-4"
           >
             anzenctf.tech ↗
           </a>
@@ -105,24 +102,25 @@ export function Footer({ onOpenResume }: { onOpenResume: () => void }) {
   const { copied, copy } = useCopy();
 
   return (
-    <footer className="relative border-t border-border/70">
-      <div aria-hidden className="dot-grid pointer-events-none absolute inset-0 opacity-40" />
-      <div className="relative mx-auto w-full max-w-6xl px-4 py-12 sm:px-6">
-        <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between">
+    <footer className="relative overflow-hidden border-t border-border">
+      <div aria-hidden className="grid-paper pointer-events-none absolute inset-0 opacity-60" />
+      <div className="relative mx-auto w-full max-w-6xl px-4 py-14 sm:px-6">
+        <div className="flex flex-col gap-8 sm:flex-row sm:items-start sm:justify-between">
           <div>
-            <div className="flex items-center gap-2">
-              <span className="mono-chip font-semibold text-foreground">{CONTACT.handle}</span>
+            <div className="flex items-baseline gap-2 font-display text-4xl font-bold tracking-tight text-foreground">
+              {CONTACT.handle}
+              <span aria-hidden className="text-primary">.</span>
               <span aria-hidden className="mono-chip caret-blink text-primary" />
             </div>
-            <p className="mt-2 max-w-md text-sm text-muted-foreground">
+            <p className="serif-text mt-3 max-w-md text-lg text-muted-foreground">
               Open to security research collaborations, AppSec roles, and responsible
               disclosure programmes. Best way to reach me is email.
             </p>
-            <div className="mt-4 flex flex-wrap items-center gap-2">
+            <div className="mt-5 flex flex-wrap items-center gap-2">
               <button
                 type="button"
                 onClick={onOpenResume}
-                className="mono-chip inline-flex items-center gap-1.5 rounded-md bg-primary px-3 py-2 font-semibold text-primary-foreground transition-colors hover:bg-primary/85"
+                className="mono-chip inline-flex items-center gap-1.5 rounded-full bg-primary px-4 py-2 font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
               >
                 resume.pdf
               </button>
@@ -143,7 +141,7 @@ export function Footer({ onOpenResume }: { onOpenResume: () => void }) {
             </div>
           </div>
 
-          <div className="mono-chip flex flex-col gap-2 text-muted-foreground sm:items-end">
+          <div className="mono-chip flex flex-col gap-2.5 text-muted-foreground sm:items-end">
             <a href={CONTACT.hackerone} target="_blank" rel="noreferrer" className="hover:text-primary">
               hackerone.com/{CONTACT.handle}
             </a>
@@ -159,7 +157,7 @@ export function Footer({ onOpenResume }: { onOpenResume: () => void }) {
           </div>
         </div>
 
-        <div className="mono-chip mt-10 flex flex-wrap items-center justify-between gap-2 border-t border-border/60 pt-5 text-muted-foreground">
+        <div className="mono-chip mt-12 flex flex-wrap items-center justify-between gap-2 border-t border-border pt-5 text-muted-foreground">
           <span>© 2026 {CONTACT.name}</span>
           <span aria-live="polite">
             built with care · all disclosures responsibly coordinated
