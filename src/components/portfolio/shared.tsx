@@ -24,24 +24,24 @@ export function Section({
   className?: string;
 }) {
   return (
-    <section id={id} className={cn("sec-pad scroll-mt-24", className)}>
+    <section id={id} className={cn("sec-pad topo-dark scroll-mt-24", className)}>
       <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
-        <div className="mb-8 flex flex-col gap-2 sm:mb-10">
-          <div className="mono-chip flex items-center gap-2 text-primary">
-            <span aria-hidden className="text-muted-foreground/70">{"//"}</span>
+        <div className="mb-8 flex flex-col gap-3 sm:mb-12">
+          <div className="kicker flex items-center gap-3 text-muted-foreground">
+            <span aria-hidden className="text-primary">◆</span>
             <span>
-              {index} — {kicker}
+              {index} · {kicker}
             </span>
             <span
               aria-hidden
-              className="h-px flex-1 bg-gradient-to-r from-border to-transparent"
+              className="h-px flex-1 bg-border"
             />
           </div>
-          <h2 className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
+          <h2 className="max-w-3xl font-display text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">
             {title}
           </h2>
           {description ? (
-            <p className="max-w-2xl text-sm text-muted-foreground">{description}</p>
+            <p className="serif-text max-w-2xl text-lg text-muted-foreground">{description}</p>
           ) : null}
         </div>
         {children}
@@ -103,9 +103,9 @@ export function CopyButton({
       }}
       aria-label={isCopied ? "Copied" : `Copy ${label ?? value}`}
       className={cn(
-        "mono-chip inline-flex shrink-0 items-center gap-1.5 rounded-md border border-border bg-secondary/60 px-2 py-1 text-muted-foreground transition-colors hover:border-primary/50 hover:text-foreground",
-        compact && "px-1.5 py-0.5",
-        isCopied && "border-primary/60 text-primary",
+        "mono-chip inline-flex shrink-0 items-center gap-1.5 rounded-full border border-border px-2.5 py-1 text-muted-foreground transition-colors hover:border-primary hover:text-primary",
+        compact && "px-2 py-0.5",
+        isCopied && "border-primary text-primary",
         className,
       )}
     >
@@ -128,7 +128,7 @@ export function Tag({ children, className }: { children: ReactNode; className?: 
   return (
     <span
       className={cn(
-        "mono-chip inline-flex items-center rounded-md border border-border bg-secondary/70 px-2 py-0.5 text-muted-foreground",
+        "mono-chip inline-flex items-center rounded-full border border-border px-2.5 py-0.5 text-muted-foreground",
         className,
       )}
     >
