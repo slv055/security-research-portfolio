@@ -1,5 +1,5 @@
 import { CONTACT, EXPERTISE, LINKS } from "@/data/portfolio";
-import { BadgeCheck, ExternalLink, Mail, Phone, Shield, ArrowDown } from "lucide-react";
+import { ArrowDown, ArrowUpRight, BadgeCheck, ExternalLink, Mail, Phone } from "lucide-react";
 import { CopyButton, useCopy, Tag } from "./shared";
 import { Button } from "@/components/ui/button";
 
@@ -14,59 +14,38 @@ export function Hero({
 
   return (
     <div id="top" className="relative overflow-hidden">
-      {/* backdrop: dot grid + soft green glow, very subtle */}
-      <div aria-hidden className="dot-grid pointer-events-none absolute inset-0 opacity-70" />
+      <div aria-hidden className="grid-paper pointer-events-none absolute inset-0" />
+      {/* solid blue accent block, like a printed sticker */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0"
-        style={{
-          background:
-            "radial-gradient(720px 340px at 70% -8%, color-mix(in oklab, var(--glow) 11%, transparent), transparent 70%)",
-        }}
-      />
-      <div aria-hidden className="scanlines pointer-events-none absolute inset-0 opacity-40" />
+        className="absolute right-6 top-20 hidden size-20 items-center justify-center bg-primary text-primary-foreground lg:flex"
+      >
+        <ArrowUpRight className="size-9" strokeWidth={2.5} />
+      </div>
 
-      <div className="relative mx-auto w-full max-w-6xl px-4 pb-16 pt-16 sm:px-6 sm:pb-20 sm:pt-24">
-        {/* status pill */}
-        <div className="mono-chip mb-6 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3 py-1.5 text-primary">
-          <Shield className="size-3.5" aria-hidden />
+      <div className="relative mx-auto w-full max-w-6xl px-4 pb-16 pt-16 sm:px-6 sm:pb-24 sm:pt-24">
+        <p className="kicker flex items-center gap-3 text-muted-foreground">
+          <span aria-hidden className="text-primary">◆</span>
           security researcher · actively disclosing
-        </div>
-
-        <p className="mono-chip mb-3 text-muted-foreground">
-          $ whoami <span className="text-primary">— verified researcher</span>
         </p>
 
-        <h1 className="text-4xl font-semibold tracking-tight text-foreground sm:text-6xl">
+        <h1 className="mt-6 font-display text-5xl font-bold leading-[0.95] tracking-tight text-foreground sm:text-7xl">
           {CONTACT.name}
         </h1>
 
-        <div className="mt-3 flex flex-wrap items-center gap-3">
-          <span className="mono-chip glow-ring inline-flex items-center gap-2 rounded-md border border-primary/40 bg-primary/10 px-3 py-1.5 text-primary">
-            @{CONTACT.handle}
-            <CopyButton
-              value={CONTACT.handle}
-              copyKey="handle"
-              copied={copied}
-              onCopy={copy}
-            />
-          </span>
-          <p className="text-lg text-muted-foreground sm:text-xl">{CONTACT.title}</p>
-        </div>
-
-        <p className="dense-text mt-5 max-w-2xl text-[15px] leading-relaxed text-muted-foreground">
+        <p className="serif-text mt-5 max-w-2xl text-xl leading-relaxed text-muted-foreground sm:text-2xl">
           I break things before attackers do — from low-level Intel firmware to cloud
           platforms and AI agents. 60+ disclosed vulnerabilities across 40+ organizations,
-          12 public CVEs, and a #1 global rank in Intel's Q1 2026 researcher rankings.
+          12 public CVEs, and a #1 global rank in Intel&rsquo;s Q1 2026 researcher rankings.
         </p>
 
-        {/* contact chips */}
-        <div className="mt-7 flex flex-wrap items-center gap-2.5">
+        {/* contact pills */}
+        <div className="mt-8 flex flex-wrap items-center gap-2.5">
           <a
             href={CONTACT.hackerone}
             target="_blank"
             rel="noreferrer"
-            className="mono-chip inline-flex items-center gap-2 rounded-md border border-border bg-secondary/50 px-3 py-2 text-foreground transition-colors hover:border-primary/50"
+            className="mono-chip inline-flex items-center gap-2 rounded-full border border-border px-4 py-2 text-foreground transition-colors hover:border-primary hover:text-primary"
           >
             <BadgeCheck className="size-3.5 text-primary" aria-hidden />
             hackerone.com/<span className="text-primary">{CONTACT.handle}</span>
@@ -76,12 +55,12 @@ export function Hero({
             href={CONTACT.linkedin}
             target="_blank"
             rel="noreferrer"
-            className="mono-chip inline-flex items-center gap-2 rounded-md border border-border bg-secondary/50 px-3 py-2 text-foreground transition-colors hover:border-primary/50"
+            className="mono-chip inline-flex items-center gap-2 rounded-full border border-border px-4 py-2 text-foreground transition-colors hover:border-primary hover:text-primary"
           >
             <ExternalLink className="size-3.5 text-primary" aria-hidden />
             linkedin.com/in/lakshmi-vignesh-s
           </a>
-          <span className="inline-flex items-center gap-1 rounded-md border border-border bg-secondary/50 pl-3 text-foreground">
+          <span className="inline-flex items-center gap-1 rounded-full border border-border pl-4 text-foreground">
             <Mail className="size-3.5 text-primary" aria-hidden />
             <a
               href={`mailto:${CONTACT.email}`}
@@ -97,7 +76,7 @@ export function Hero({
               label="email"
             />
           </span>
-          <span className="inline-flex items-center gap-1 rounded-md border border-border bg-secondary/50 pl-3 text-foreground">
+          <span className="inline-flex items-center gap-1 rounded-full border border-border pl-4 text-foreground">
             <Phone className="size-3.5 text-primary" aria-hidden />
             <a
               href={`tel:${CONTACT.phone.replace(/\s/g, "")}`}
@@ -120,7 +99,7 @@ export function Hero({
           <Button
             asChild
             size="lg"
-            className="rounded-md bg-primary font-mono font-semibold text-primary-foreground hover:bg-primary/85"
+            className="rounded-full bg-primary font-semibold text-primary-foreground hover:bg-primary/90"
           >
             <a href="#cves">
               Explore 12 CVEs
@@ -131,25 +110,23 @@ export function Hero({
             asChild
             size="lg"
             variant="outline"
-            className="rounded-md border-border bg-secondary/40 font-mono hover:border-primary/50 hover:text-foreground"
+            className="rounded-full border-border bg-transparent font-semibold text-foreground hover:border-primary hover:text-primary"
           >
             <a href="#hall-of-fame">40+ Hall of Fame orgs</a>
           </Button>
           <button
             type="button"
             onClick={onOpenPalette}
-            className="mono-chip text-muted-foreground underline decoration-dotted underline-offset-4 transition-colors hover:text-foreground"
+            className="mono-chip text-muted-foreground underline decoration-dotted underline-offset-4 transition-colors hover:text-primary"
           >
             or press ⌘K to jump anywhere
           </button>
         </div>
 
         {/* expertise */}
-        <div className="mt-10 flex flex-wrap gap-1.5">
+        <div className="mt-12 flex flex-wrap gap-1.5">
           {EXPERTISE.map((s) => (
-            <Tag key={s} className="border-border/70">
-              {s.toLowerCase()}
-            </Tag>
+            <Tag key={s}>{s}</Tag>
           ))}
         </div>
       </div>

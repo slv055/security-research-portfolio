@@ -1,6 +1,7 @@
-import { Briefcase, Github, BookOpen } from "lucide-react";
+import { Github, BookOpen, Briefcase } from "lucide-react";
 import { EXPERIENCE, LINKS, type Experience } from "@/data/portfolio";
 import { Section, Tag } from "./shared";
+import { cn } from "@/lib/utils";
 
 const KIND_META: Record<Experience["kind"], { icon: typeof Briefcase; label: string }> = {
   "full-time": { icon: Briefcase, label: "full-time" },
@@ -18,42 +19,39 @@ export function ExperienceSection() {
       title="Experience & security tooling"
       description="Hands-on AppSec, security automation at scale, cloud defence, and open-source supply chain research."
     >
-      <div className="relative">
-        <div
-          aria-hidden
-          className="absolute left-[7px] top-2 bottom-2 hidden w-px bg-gradient-to-b from-primary/40 via-border to-transparent sm:block"
-        />
-        <div className="dense-gap grid grid-cols-1 gap-4">
-          {EXPERIENCE.map((exp) => {
-            const meta = KIND_META[exp.kind];
-            const Icon = meta.icon;
-            return (
-              <article
-                key={exp.role}
-                className="card-sheen relative rounded-xl border border-border bg-card p-5 transition-colors hover:border-primary/40 sm:ml-8"
-              >
-                <span
-                  aria-hidden
-                  className="absolute -left-8 top-6 hidden size-[15px] items-center justify-center rounded-full border border-primary/50 bg-background sm:flex"
-                >
-                  <span className="size-1.5 rounded-full bg-primary" />
-                </span>
-
-                <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
-                  <Icon className="size-4 text-primary" aria-hidden />
-                  <h3 className="text-base font-semibold leading-snug text-foreground">
-                    {exp.role}
-                  </h3>
-                  <span className="mono-chip rounded border border-border bg-secondary/60 px-2 py-0.5 text-muted-foreground">
-                    {meta.label}
-                  </span>
-                  <span className="mono-chip ml-auto text-muted-foreground">{exp.period}</span>
+      <div className="border-t border-border">
+        {EXPERIENCE.map((exp) => {
+          const meta = KIND_META[exp.kind];
+          const Icon = meta.icon;
+          return (
+            <article
+              key={exp.role}
+              className="grid gap-5 border-b border-border py-8 sm:grid-cols-[210px_1fr] sm:gap-8"
+            >
+              {/* left rail: period + kind */}
+              <div>
+                <div className="mono-chip flex items-center gap-2 text-foreground">
+                  <span aria-hidden className="text-[9px] text-primary">◆</span>
+                  {exp.period}
                 </div>
-                <p className="mono-chip mt-1.5 text-primary">{exp.org}</p>
-                <p className="dense-text mt-3 text-sm text-muted-foreground">{exp.summary}</p>
+                <div className="mono-chip mt-2 flex items-center gap-1.5 text-muted-foreground">
+                  <Icon className="size-3.5" aria-hidden />
+                  {meta.label}
+                </div>
+              </div>
+
+              {/* right column */}
+              <div>
+                <h3 className="font-display text-2xl font-semibold tracking-tight text-foreground">
+                  {exp.role}
+                </h3>
+                <p className="mono-chip mt-1.5 uppercase text-primary">{exp.org}</p>
+                <p className="serif-text dense-text mt-3 max-w-2xl text-lg text-muted-foreground">
+                  {exp.summary}
+                </p>
 
                 <ul
-                  className={cnList("mt-3 space-y-2", exp.kind === "publication" && "hidden")}
+                  className={cn("mt-4 max-w-3xl space-y-2.5", exp.kind === "publication" && "hidden")}
                 >
                   {exp.points.map((point) => (
                     <li
@@ -73,7 +71,7 @@ export function ExperienceSection() {
                     href={LINKS.enten}
                     target="_blank"
                     rel="noreferrer"
-                    className="mono-chip mt-3 inline-flex items-center gap-1.5 text-primary hover:underline"
+                    className="mono-chip mt-4 inline-flex items-center gap-1.5 rounded-full border border-border px-3.5 py-2 text-foreground transition-colors hover:border-primary hover:text-primary"
                   >
                     live demo — enten-alpha.vercel.app ↗
                   </a>
@@ -83,26 +81,22 @@ export function ExperienceSection() {
                     href={LINKS.paper}
                     target="_blank"
                     rel="noreferrer"
-                    className="mono-chip mt-3 inline-flex items-center gap-1.5 text-primary hover:underline"
+                    className="mono-chip mt-4 inline-flex items-center gap-1.5 rounded-full border border-border px-3.5 py-2 text-foreground transition-colors hover:border-primary hover:text-primary"
                   >
                     doi.org/10.5281/zenodo.17618882 ↗
                   </a>
                 ) : null}
 
-                <div className="mt-4 flex flex-wrap gap-1.5">
+                <div className="mt-5 flex flex-wrap gap-1.5">
                   {exp.stack.map((s) => (
-                    <Tag key={s}>{s.toLowerCase()}</Tag>
+                    <Tag key={s}>{s}</Tag>
                   ))}
                 </div>
-              </article>
-            );
-          })}
-        </div>
+              </div>
+            </article>
+          );
+        })}
       </div>
     </Section>
   );
-}
-
-function cnList(...classes: (string | false | undefined)[]) {
-  return classes.filter(Boolean).join(" ");
 }

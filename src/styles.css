@@ -6,9 +6,9 @@
 
 /*
  * Design system — "w3shi" security portfolio.
- * Dark slate/navy palette (#090d16 / #0d1117 / #050810) with a signal-green
- * primary and cyan secondary accent. Mono (JetBrains Mono) is used for
- * hashes, CVE IDs, metrics and tags; Geist for prose. All colors oklch.
+ * Black + electric-blue editorial style: pure black base, full-bleed blue
+ * sections with topo contours, huge grotesque display type (Archivo),
+ * serif body accents (Newsreader), mono kickers & data (JetBrains Mono).
  */
 
 @theme inline {
@@ -51,53 +51,48 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
-  /* custom tokens */
-  --color-glow: var(--glow);
-  --color-cyan: var(--cyan);
-  --color-surface: var(--surface);
-  --color-surface-2: var(--surface-2);
+  --font-display: "Archivo", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Newsreader", Georgia, serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
-  --font-sans: "Geist", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Archivo", "Inter", ui-sans-serif, system-ui, sans-serif;
 }
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(0.158 0.017 261); /* #090d16 */
-  --surface: oklch(0.187 0.016 256);    /* #0d1117 */
-  --surface-2: oklch(0.213 0.017 256);
-  --foreground: oklch(0.936 0.011 250); /* #e6edf3 */
-  --card: oklch(0.187 0.016 256);
-  --card-foreground: oklch(0.936 0.011 250);
-  --popover: oklch(0.2 0.016 257);
-  --popover-foreground: oklch(0.936 0.011 250);
-  --primary: oklch(0.72 0.19 152);      /* signal green */
-  --primary-foreground: oklch(0.13 0.015 260);
-  --glow: oklch(0.72 0.19 152);
-  --cyan: oklch(0.8 0.1 200);
-  --secondary: oklch(0.213 0.017 256);
-  --secondary-foreground: oklch(0.936 0.011 250);
-  --muted: oklch(0.213 0.017 256);
-  --muted-foreground: oklch(0.67 0.02 255);
-  --accent: oklch(0.213 0.017 256);
-  --accent-foreground: oklch(0.936 0.011 250);
+  --background: oklch(0.115 0.004 260);   /* near-pure black, hint of blue */
+  --surface: oklch(0.145 0.006 260);
+  --surface-2: oklch(0.175 0.008 260);
+  --foreground: oklch(0.965 0.003 260);   /* #f4f5f7 */
+  --card: oklch(0.145 0.006 260);
+  --card-foreground: oklch(0.965 0.003 260);
+  --popover: oklch(0.155 0.007 260);
+  --popover-foreground: oklch(0.965 0.003 260);
+  --primary: oklch(0.66 0.155 262);       /* electric blue ~#5c8bf2 */
+  --primary-foreground: oklch(0.145 0.02 262); /* near-black ink on blue */
+  --secondary: oklch(0.175 0.008 260);
+  --secondary-foreground: oklch(0.965 0.003 260);
+  --muted: oklch(0.175 0.008 260);
+  --muted-foreground: oklch(0.68 0.012 260);
+  --accent: oklch(0.175 0.008 260);
+  --accent-foreground: oklch(0.965 0.003 260);
   --destructive: oklch(0.63 0.19 25);
   --destructive-foreground: oklch(0.98 0 0);
-  --border: oklch(0.27 0.02 256);
-  --input: oklch(0.27 0.02 256);
-  --ring: oklch(0.72 0.19 152);
-  --chart-1: oklch(0.72 0.19 152);
-  --chart-2: oklch(0.8 0.1 200);
+  --border: oklch(0.255 0.008 260);
+  --input: oklch(0.255 0.008 260);
+  --ring: oklch(0.66 0.155 262);
+  --chart-1: oklch(0.66 0.155 262);
+  --chart-2: oklch(0.75 0.1 200);
   --chart-3: oklch(0.7 0.12 275);
   --chart-4: oklch(0.83 0.14 85);
   --chart-5: oklch(0.7 0.16 25);
-  --sidebar: oklch(0.187 0.016 256);
-  --sidebar-foreground: oklch(0.936 0.011 250);
-  --sidebar-primary: oklch(0.72 0.19 152);
-  --sidebar-primary-foreground: oklch(0.13 0.015 260);
-  --sidebar-accent: oklch(0.213 0.017 256);
-  --sidebar-accent-foreground: oklch(0.936 0.011 250);
-  --sidebar-border: oklch(0.27 0.02 256);
-  --sidebar-ring: oklch(0.72 0.19 152);
+  --sidebar: oklch(0.145 0.006 260);
+  --sidebar-foreground: oklch(0.965 0.003 260);
+  --sidebar-primary: oklch(0.66 0.155 262);
+  --sidebar-primary-foreground: oklch(0.145 0.02 262);
+  --sidebar-accent: oklch(0.175 0.008 260);
+  --sidebar-accent-foreground: oklch(0.965 0.003 260);
+  --sidebar-border: oklch(0.255 0.008 260);
+  --sidebar-ring: oklch(0.66 0.155 262);
 }
 
 @layer base {
@@ -118,58 +113,77 @@
   }
 
   ::selection {
-    background: color-mix(in oklab, var(--glow) 30%, transparent);
-    color: var(--foreground);
+    background: var(--primary);
+    color: var(--primary-foreground);
   }
 }
 
-/* ---- custom utilities -------------------------------------------------- */
+/* ---- textures ---------------------------------------------------------- */
 
-/* Subtle dot-grid backdrop */
-@utility dot-grid {
-  background-image: radial-gradient(
-    circle at 1px 1px,
-    color-mix(in oklab, var(--foreground) 9%, transparent) 1px,
-    transparent 0
-  );
-  background-size: 26px 26px;
+/* Blueprint grid paper, hairline lines */
+@utility grid-paper {
+  background-image:
+    linear-gradient(color-mix(in oklab, var(--foreground) 4.5%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in oklab, var(--foreground) 4.5%, transparent) 1px, transparent 1px);
+  background-size: 28px 28px;
 }
 
-/* Very subtle horizontal scanlines, low opacity, non-interactive */
-@utility scanlines {
-  background-image: repeating-linear-gradient(
-    to bottom,
-    transparent 0px,
-    transparent 3px,
-    color-mix(in oklab, var(--foreground) 2.2%, transparent) 4px
-  );
+/* Topographic contour rings, for full-bleed blue sections */
+@utility topo {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='640' height='640' viewBox='0 0 640 640' fill='none'%3E%3Cg stroke='black' stroke-opacity='0.13' fill='none' stroke-width='1.1'%3E%3Cellipse cx='130' cy='470' rx='170' ry='120' transform='rotate(-8 130 470)'/%3E%3Cellipse cx='132' cy='474' rx='128' ry='88' transform='rotate(-8 132 474)'/%3E%3Cellipse cx='128' cy='468' rx='88' ry='58' transform='rotate(-8 128 468)'/%3E%3Cellipse cx='134' cy='472' rx='50' ry='32' transform='rotate(-8 134 472)'/%3E%3Cellipse cx='500' cy='120' rx='185' ry='135' transform='rotate(12 500 120)'/%3E%3Cellipse cx='498' cy='122' rx='140' ry='98' transform='rotate(12 498 122)'/%3E%3Cellipse cx='502' cy='118' rx='96' ry='64' transform='rotate(12 502 118)'/%3E%3Cellipse cx='496' cy='124' rx='56' ry='36' transform='rotate(12 496 124)'/%3E%3Cellipse cx='330' cy='330' rx='230' ry='165' transform='rotate(-16 330 330)'/%3E%3Cellipse cx='332' cy='332' rx='172' ry='120' transform='rotate(-16 332 332)'/%3E%3Cellipse cx='328' cy='328' rx='116' ry='78' transform='rotate(-16 328 328)'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 640px 640px;
 }
 
-@utility text-glow {
-  text-shadow: 0 0 18px color-mix(in oklab, var(--glow) 45%, transparent);
+/* Same contours for dark sections, faint light strokes */
+@utility topo-dark {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='640' height='640' viewBox='0 0 640 640' fill='none'%3E%3Cg stroke='white' stroke-opacity='0.045' fill='none' stroke-width='1.1'%3E%3Cellipse cx='130' cy='470' rx='170' ry='120' transform='rotate(-8 130 470)'/%3E%3Cellipse cx='132' cy='474' rx='128' ry='88' transform='rotate(-8 132 474)'/%3E%3Cellipse cx='128' cy='468' rx='88' ry='58' transform='rotate(-8 128 468)'/%3E%3Cellipse cx='134' cy='472' rx='50' ry='32' transform='rotate(-8 134 472)'/%3E%3Cellipse cx='500' cy='120' rx='185' ry='135' transform='rotate(12 500 120)'/%3E%3Cellipse cx='498' cy='122' rx='140' ry='98' transform='rotate(12 498 122)'/%3E%3Cellipse cx='502' cy='118' rx='96' ry='64' transform='rotate(12 502 118)'/%3E%3Cellipse cx='496' cy='124' rx='56' ry='36' transform='rotate(12 496 124)'/%3E%3Cellipse cx='330' cy='330' rx='230' ry='165' transform='rotate(-16 330 330)'/%3E%3Cellipse cx='332' cy='332' rx='172' ry='120' transform='rotate(-16 332 332)'/%3E%3Cellipse cx='328' cy='328' rx='116' ry='78' transform='rotate(-16 328 328)'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 640px 640px;
 }
 
-@utility glow-ring {
-  box-shadow:
-    0 0 0 1px color-mix(in oklab, var(--glow) 25%, transparent),
-    0 0 28px -6px color-mix(in oklab, var(--glow) 30%, transparent);
+/* ---- type helpers ------------------------------------------------------ */
+
+@utility mono-chip {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.02em;
 }
 
-@utility card-sheen {
-  background-image: linear-gradient(
-    145deg,
-    color-mix(in oklab, var(--foreground) 3%, transparent),
-    transparent 55%
-  );
+@utility kicker {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
 }
 
-/* Section rhythm; dense reading mode tightens it via [data-density] */
+@utility serif-text {
+  font-family: var(--font-serif);
+  letter-spacing: 0;
+}
+
+/* Terminal-style blinking cursor */
+@utility caret-blink {
+  &::after {
+    content: "▍";
+    color: var(--primary);
+    animation: w3shi-blink 1.2s steps(1) infinite;
+    margin-left: 0.15em;
+  }
+}
+
+@keyframes w3shi-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+/* ---- section rhythm; dense reading mode tightens it -------------------- */
+
 @utility sec-pad {
-  padding-block: var(--sec-block, 4.5rem);
+  padding-block: var(--sec-block, 5.5rem);
 }
 
 [data-density="dense"] {
-  --sec-block: 2.75rem;
+  --sec-block: 3rem;
 }
 
 [data-density="dense"] .dense-gap {
@@ -182,27 +196,4 @@
 
 [data-density="dense"] .dense-clamp p {
   font-size: 0.875rem;
-}
-
-/* Mono "code" chip */
-@utility mono-chip {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.02em;
-}
-
-/* Terminal-style blinking cursor */
-@utility caret-blink {
-  &::after {
-    content: "▍";
-    color: var(--glow);
-    animation: w3shi-blink 1.2s steps(1) infinite;
-    margin-left: 0.15em;
-  }
-}
-
-@keyframes w3shi-blink {
-  50% {
-    opacity: 0;
-  }
 }
